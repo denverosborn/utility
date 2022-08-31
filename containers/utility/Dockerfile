@@ -12,6 +12,7 @@ ARG DNF_LIST="\
   python3 \
   git \
   iputils \
+  jq \
 "
 
 #Ansible pip packages
