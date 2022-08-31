@@ -31,6 +31,7 @@ ARG OCP_LIST="\
   https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-install-linux.tar.gz \
   https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/latest/openshift-client-linux.tar.gz \
   https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/latest/oc-mirror.tar.gz \
+  https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/coreos-installer/latest/coreos-installer \
 "
 
 #################################################################################
@@ -63,6 +64,7 @@ RUN set -ex \
   && tar xvf openshift-install-linux.tar.gz -C /usr/local/bin \
   && tar xvf openshift-client-linux.tar.gz -C /usr/local/bin \
   && tar xvf oc-mirror.tar.gz -C /usr/local/bin \
+  && mv coreos-installer /usr/local/bin \
   && echo
 
 RUN set -ex \
@@ -72,4 +74,6 @@ RUN set -ex \
 #################################################################################
 # Finalize
 RUN mkdir -p /root/.docker
+RUN mkdir -p /root/.cache/openshift-installer/
+RUN ln -s /root/utility/image_cache /root/.cache/openshift-installer/image_cache
 WORKDIR /root/utility
