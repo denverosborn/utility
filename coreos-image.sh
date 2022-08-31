@@ -45,6 +45,7 @@ HASH1=$(cat ${COSJSON}|jq -r '.architectures.x86_64.artifacts."'${PLATFORM}'".fo
 
 # Download the image
 echo Downloading the CoreOS Image for ${PLATFORM}
+mkdir -p /root/utility/image_cache
 /usr/local/bin/coreos-installer download --insecure -u ${URL} -C /root/utility/image_cache >/dev/null 2>&1
 
 # Verify hash
